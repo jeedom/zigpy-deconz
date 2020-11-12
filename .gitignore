@@ -71,3 +71,4 @@ ENV/
 
 # Visual Studio Code
 .vscode
+.remote-sync.json

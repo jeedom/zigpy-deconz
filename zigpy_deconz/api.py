@@ -333,7 +333,6 @@ class Deconz:
             status = Status(data[2])
         except ValueError:
             status = data[2]
-
         fut = None
         if solicited and seq in self._awaiting:
             fut = self._awaiting.pop(seq)
@@ -555,7 +554,7 @@ class Deconz:
         pass
 
     def _handle_zigbee_green_power(self, data):
-        pass
+        self._app.devices[self._app._ieee].endpoints[242].out_clusters[33].handle_message(data)
 
     def _handle_simplified_beacon(self, data):
         LOGGER.debug(

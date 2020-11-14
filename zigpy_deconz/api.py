@@ -11,6 +11,7 @@ import serial
 from zigpy.config import CONF_DEVICE_PATH
 import zigpy.exceptions
 from zigpy.types import APSStatus, Channels
+import zigpy.zcl
 
 from zigpy_deconz.exception import APIException, CommandError
 import zigpy_deconz.types as t
@@ -554,7 +555,7 @@ class Deconz:
         pass
 
     def _handle_zigbee_green_power(self, data):
-        self._app.devices[self._app._ieee].endpoints[242].out_clusters[33].handle_message(data)
+        self._app.devices[self._app._ieee].endpoints[242].out_clusters[zigpy.zcl.clusters.general.GreenPowerProxy.cluster_id].handle_message(data)
 
     def _handle_simplified_beacon(self, data):
         LOGGER.debug(
